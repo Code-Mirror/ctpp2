@@ -462,20 +462,20 @@ ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 #
 
 # CTPP Compiler
-#ADD_EXECUTABLE(ctpp2c                       tests/CTPP2Compiler.cpp)
-#TARGET_LINK_LIBRARIES(ctpp2c                ctpp2)
+ADD_EXECUTABLE(ctpp2c                       tests/CTPP2Compiler.cpp)
+TARGET_LINK_LIBRARIES(ctpp2c                ctpp2)
 
 # CTPP2 Interpreter
-#ADD_EXECUTABLE(ctpp2i                       tests/CTPP2Interpreter.cpp)
-#TARGET_LINK_LIBRARIES(ctpp2i                ctpp2)
+ADD_EXECUTABLE(ctpp2i                       tests/CTPP2Interpreter.cpp)
+TARGET_LINK_LIBRARIES(ctpp2i                ctpp2)
 
 # CTPP2 virtual machine
-#ADD_EXECUTABLE(ctpp2vm                      tests/CTPP2Emulator.cpp)
-#TARGET_LINK_LIBRARIES(ctpp2vm               ctpp2)
+ADD_EXECUTABLE(ctpp2vm                      tests/CTPP2Emulator.cpp)
+TARGET_LINK_LIBRARIES(ctpp2vm               ctpp2)
 
 # CTPP2 JSON parser
-#ADD_EXECUTABLE(ctpp2json                    tests/CTPP2JSONParser.cpp)
-#TARGET_LINK_LIBRARIES(ctpp2json             ctpp2)
+ADD_EXECUTABLE(ctpp2json                    tests/CTPP2JSONParser.cpp)
+TARGET_LINK_LIBRARIES(ctpp2json             ctpp2)
 
 # ################################################################################
 # Test suite
