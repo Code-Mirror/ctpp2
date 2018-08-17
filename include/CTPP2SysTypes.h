@@ -38,6 +38,7 @@
 */
 
 // C Includes
+#include <bits/types.h>
 #include <sys/types.h>
 #include <stdint.h>
 
