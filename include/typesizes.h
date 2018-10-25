@@ -1,4 +1,4 @@
-/* bits/typesizes.h -- underlying types for *_t.  Linux/x86-64 version.
+/* typesizes.h -- underlying types for *_t.  Linux/x86-64 version.
    Copyright (C) 2012-2018 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
@@ -17,14 +17,14 @@
    <http://www.gnu.org/licenses/>.  */
 
 #ifndef _BITS_TYPES_H
-# error "Never include <bits/typesizes.h> directly; use <sys/types.h> instead."
+# error "Never include "typesizes.h" directly; use <sys/types.h> instead."
 #endif
 
 #ifndef	_BITS_TYPESIZES_H
 #define	_BITS_TYPESIZES_H	1
 
-/* See <bits/types.h> for the meaning of these macros.  This file exists so
-   that <bits/types.h> need not vary across different GNU platforms.  */
+/* See "types.h" for the meaning of these macros.  This file exists so
+   that "types.h" need not vary across different GNU platforms.  */
 
 /* X32 kernel interface is 64-bit.  */
 #if defined __x86_64__ && defined __ILP32__
@@ -92,4 +92,4 @@
 #define __FD_SETSIZE		1024
 
 
-#endif /* bits/typesizes.h */
+#endif /* typesizes.h */

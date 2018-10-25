@@ -1,4 +1,4 @@
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
+/* types.h -- definitions of __*_t types underlying *_t types.
    Copyright (C) 2002-2018 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
@@ -24,7 +24,7 @@
 #define	_BITS_TYPES_H	1
 
 #include <features.h>
-#include <bits/wordsize.h>
+#include "wordsize.h"
 
 /* Convenience types.  */
 typedef unsigned char __u_char;
@@ -66,7 +66,7 @@ __extension__ typedef unsigned long long int __uintmax_t;
 #endif
 
 
-/* The machine-dependent file <bits/typesizes.h> defines __*_T_TYPE
+/* The machine-dependent file "typesizes.h" defines __*_T_TYPE
    macros for each of the OS types we define below.  The definitions
    of those macros must use the following macros for underlying types.
    We define __S<SIZE>_TYPE and __U<SIZE>_TYPE for the signed and unsigned
@@ -127,7 +127,7 @@ __extension__ typedef unsigned long long int __uintmax_t;
 #else
 # error
 #endif
-#include <bits/typesizes.h>	/* Defines __*_T_TYPE macros.  */
+#include "typesizes.h"	/* Defines __*_T_TYPE macros.  */
 
 
 __STD_TYPE __DEV_T_TYPE __dev_t;	/* Type of device numbers.  */
@@ -140,7 +140,7 @@ __STD_TYPE __NLINK_T_TYPE __nlink_t;	/* Type of file link counts.  */
 __STD_TYPE __OFF_T_TYPE __off_t;	/* Type of file sizes and offsets.  */
 __STD_TYPE __OFF64_T_TYPE __off64_t;	/* Type of file sizes and offsets (LFS).  */
 __STD_TYPE __PID_T_TYPE __pid_t;	/* Type of process identifications.  */
-__STD_TYPE __FSID_T_TYPE __fsid_t;	/* Type of file system IDs.  */
+//__STD_TYPE __FSID_T_TYPE __fsid_t;	/* Type of file system IDs.  */
 __STD_TYPE __CLOCK_T_TYPE __clock_t;	/* Type of CPU usage counts.  */
 __STD_TYPE __RLIM_T_TYPE __rlim_t;	/* Type for resource measurement.  */
 __STD_TYPE __RLIM64_T_TYPE __rlim64_t;	/* Type for resource measurement (LFS).  */
@@ -203,4 +203,4 @@ typedef int __sig_atomic_t;
 
 #undef __STD_TYPE
 
-#endif /* bits/types.h */
+#endif /* types.h */

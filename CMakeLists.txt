@@ -456,9 +456,9 @@ SET(LIBSRCS
 # ################################################################################
 # Lib binary
 #
-ADD_LIBRARY(ctpp2-static STATIC ${LIBSRCS})
-SET_TARGET_PROPERTIES(ctpp2-static PROPERTIES OUTPUT_NAME ctpp2-st)
-SET_TARGET_PROPERTIES(ctpp2-static PROPERTIES LINKER_LANGUAGE CXX)
+#ADD_LIBRARY(ctpp2-static STATIC ${LIBSRCS})
+#SET_TARGET_PROPERTIES(ctpp2-static PROPERTIES OUTPUT_NAME ctpp2-st)
+#SET_TARGET_PROPERTIES(ctpp2-static PROPERTIES LINKER_LANGUAGE CXX)
 
 ADD_LIBRARY(ctpp2 SHARED ${LIBSRCS})
 SET_TARGET_PROPERTIES(ctpp2 PROPERTIES OUTPUT_NAME ctpp2)
@@ -750,6 +750,9 @@ INSTALL(FILES include/CDT.hpp
               include/STLPair.hpp
               include/STLString.hpp
               include/STLVector.hpp
+              include/types.h
+              include/typesizes.h
+              include/wordsize.h
         DESTINATION include/ctpp2
         PERMISSIONS OWNER_READ OWNER_WRITE
                     GROUP_READ
@@ -799,7 +802,7 @@ echo.
 :end
 ")
 
-    INSTALL(TARGETS ctpp2-static DESTINATION lib${LIB_SUFFIX})
+#    INSTALL(TARGETS ctpp2-static DESTINATION lib${LIB_SUFFIX})
 
     INSTALL(TARGETS ctpp2 DESTINATION .)
 
@@ -817,7 +820,8 @@ echo.
 
 ELSE ("${CMAKE_SYSTEM_NAME}" MATCHES "Windows")
 # Install library
-INSTALL(TARGETS ctpp2 ctpp2-static DESTINATION lib${LIB_SUFFIX})
+#INSTALL(TARGETS ctpp2 ctpp2-static DESTINATION lib${LIB_SUFFIX})
+INSTALL(TARGETS ctpp2 DESTINATION lib${LIB_SUFFIX})
 
 # Install Manpages
 INSTALL(FILES
