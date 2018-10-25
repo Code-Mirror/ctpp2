@@ -195,6 +195,24 @@ IF("${CMAKE_SYSTEM_NAME}" MATCHES "HP-UX")
 ENDIF("${CMAKE_SYSTEM_NAME}" MATCHES "HP-UX")
 
 SET(MD5_WITHOUT_OPENSSL "")
+        FIND_PATH(INTL_INCLUDE libintl.h PATHS /opt/include
+                                                  /usr/include
+                                                  /usr/local/include
+                  DOC "Path where the intl header files can be found")
+            FIND_LIBRARY(INTL_LIBRARY NAMES intl PATHS /lib
+                                                        /opt/lib
+                                                        /usr/lib
+                                                        /usr/local/lib
+                         DOC "Path where the intl libraries can be found")
+            IF (INTL_LIBRARY)
+                SET(PROJECT_LIBS "${PROJECT_LIBS} intl")
+            ELSE (INTL_LIBRARY)
+                MESSAGE(STATUS "#### ERROR: Cannot find libintl.so, aborting")
+            ENDIF (INTL_LIBRARY)
+            SET(INTL_SUPPORT "ON")
+
+            MESSAGE(STATUS "#### INFO: INTL (intl) function support enabled")
+
 #
 # MD5 library support
 #
@@ -450,12 +468,11 @@ IF(DEBUG_MODE MATCHES "ON")
     SET_TARGET_PROPERTIES(ctpp2 PROPERTIES LINK_FLAGS -Wl,-lgcov)
 ENDIF(DEBUG_MODE MATCHES "ON")
 
-TARGET_LINK_LIBRARIES(ctpp2 ${MD5_LIBRARY} ${ICONV_LIBRARY} ${WS2_32_LIBRARY})
+TARGET_LINK_LIBRARIES(ctpp2 ${MD5_LIBRARY} ${INTL_LIBRARY} ${ICONV_LIBRARY} ${WS2_32_LIBRARY})
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     SET_TARGET_PROPERTIES(ctpp2 PROPERTIES COMPILE_DEFINITIONS CTPP2_DLL)
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-
 
 # ################################################################################
 # Exec binary
@@ -750,8 +767,8 @@ set CXXFLAGS=\"${CMAKE_CXX_FLAGS}\"
 set MAKE=\"${CMAKE_MAKE_PROGRAM}\"
 set CC=\"${CMAKE_C_COMPILER}\"
 set CXX=\"${CMAKE_CXX_COMPILER}\"
-set INCLUDE=\"${ICONV_INCLUDE} ${MD5_INCLUDE} ${CMAKE_INSTALL_PREFIX}/include/ctpp2\"
-set INCLUDE2=\"-I${ICONV_INCLUDE} -I${MD5_INCLUDE} -I${CMAKE_INSTALL_PREFIX}/include/ctpp2\"
+set INCLUDE=\"${ICONV_INCLUDE} ${MD5_INCLUDE} ${INTL_INCLUDE} ${CMAKE_INSTALL_PREFIX}/include/ctpp2\"
+set INCLUDE2=\"-I${ICONV_INCLUDE} -I${MD5_INCLUDE} -I${INTL_INCLUDE} -I${CMAKE_INSTALL_PREFIX}/include/ctpp2\"
 set LIBS=\"${CMAKE_INSTALL_PREFIX}/lib\"
 set VERSION=\"${CTPP_VERSION}\"
 
@@ -838,8 +855,8 @@ CXXFLAGS=\"${CMAKE_CXX_FLAGS}\"
 MAKE=${CMAKE_MAKE_PROGRAM}
 CC=${CMAKE_C_COMPILER}
 CXX=${CMAKE_CXX_COMPILER}
-INCLUDE=\"${ICONV_INCLUDE} ${MD5_INCLUDE} ${CMAKE_INSTALL_PREFIX}/include/ctpp2\"
-INCLUDE2=\"-I${ICONV_INCLUDE} -I${MD5_INCLUDE} -I${CMAKE_INSTALL_PREFIX}/include/ctpp2\"
+INCLUDE=\"${ICONV_INCLUDE} ${MD5_INCLUDE} ${INTL_INCLUDE} ${CMAKE_INSTALL_PREFIX}/include/ctpp2\"
+INCLUDE2=\"-I${ICONV_INCLUDE} -I${MD5_INCLUDE} -I${INTL_INCLUDE} -I${CMAKE_INSTALL_PREFIX}/include/ctpp2\"
 LIBS=\"${CMAKE_INSTALL_PREFIX}/lib\"
 VERSION=\"${CTPP_VERSION}\"
 
